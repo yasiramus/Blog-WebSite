@@ -1,0 +1,18 @@
+{
+  "name": "blog_mongoose",
+  "version": "1.0.0",
+  "description": "incorpirating mongoose into ejs",
+  "main": "js/server.js",
+  "scripts": {
+    "serve": "nodemon server.js",
+    "test": "start"
+  },
+  "author": "Sira",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6",
+    "morgan": "^1.10.0"
+  }
+}

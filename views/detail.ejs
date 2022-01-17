@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include ('./partial/head.ejs') %>
+
+    <body>
+        <%-include ('./partial/nav.ejs') %>
+
+            <div class="details content">
+                <h2>
+                    <%= blogdata.title %>
+                </h2>
+                <div class="content">
+                    <p>
+                        <%= blogdata.content %>
+                    </p>
+                </div>
+                <a class="delete" id="<%= blogdata._id %>" data-doc="<%=blogdata._id %>">delete</a>
+
+            </div>
+            <%- include ('./partial/footer.ejs') %>
+    </body>
+    <script>
+        const deleteDAtaBlog = document.querySelectorAll('.delete');
+
+        deleteDAtaBlog.forEach(list => {
+            //dataset allows us to have access to the data value with <a>
+            const id = list.dataset.doc;
+            const endpoint = `/blog/delete/${id}`;
+
+            //the event listener means when the delete buttion is click delete it data
+            list.addEventListener("click", () => {
+
+                //the fetch is a ajax client based 
+                fetch(endpoint, {
+                    method: "DELETE"
+                }).then(result => result.json())
+
+                    //this responsible for refreshing the browser after deleting data blogs
+                    //   .then(res => window.location.href = "http://localhost:8000/blog/display")
+                    .catch(err => console.log(err))
+            })
+        })
+    </script>
+
+</html>
