@@ -20,16 +20,18 @@ router.get('/display', Controller.FetchDataBlog);
 //fetching a single data
 router.get('/detail/:id', Controller.FetchSingleData);
 
-// display success message at the user side
+// display success message at the user/client side
 router.get('/success', (req, res) => {
     res.render('success', { title: 'Success page' })
 });
 
-//updating blog data
-router.put('/update/:id', Controller.UpadateSingleData);
+//updating/saving blog data this similar to using the put crud method at the backened
+//i am using post here because with the post method i am unable to update data at the client side
+router.post('/update/:id', Controller.UpadateSingleData);
 
-//fetching data from the blog and displaying it at the updateBlog ejs so the the user can edit the blog data in order to update it
-router.get('/fetchupdatedata/:id',Controller.fetchUpdate)
+//fetching data from the blog and displaying it at the updateBlog ejs so the the user/client
+// can edit the blog data in order to update it
+router.get('/fetch-update/:id',Controller.fetchUpdate)
 
 //delete metthod 
 //deleting data using their ids

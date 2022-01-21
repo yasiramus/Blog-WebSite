@@ -16,3 +16,26 @@
       //    // Make Mongoose use Unix time (seconds since Jan 1, 1970)
       //    timestamps: {currentTime:()=> Math.floor(Date.now())}
       //  }
+
+
+
+  //     <script>
+  //     const update = document.querySelector('button');
+
+  //     const id = update.dataset.doc;
+  //        const endpoint = `/blog/update/${id}`;
+  //        const obj = {
+  //          title: document.querySelector('input').getAttribute('value')
+  //        }
+  //              console.log(document.querySelector('input').getAttribute('value'))
+  //        update.addEventListener("click", () => {
+
+  //           //the fetch is a ajax client based 
+  //           fetch(endpoint, {
+  //              method: "PUT",
+  //              body:JSON.stringify(obj)            
+  //           }).then(result => result.json())
+  //              .catch(err => console.log(err))
+  //             //  console.log(obj)
+  //        })
+  //  </script>
