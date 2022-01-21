@@ -1,4 +1,6 @@
 const express = require('express');
+const req = require('express/lib/request');
+const res = require('express/lib/response');
 
 //router level middleware
 const router = express.Router();

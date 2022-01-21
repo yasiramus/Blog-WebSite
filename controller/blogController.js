@@ -48,7 +48,7 @@ const FetchSingleData = async (req, res) => {
     }).catch((err) => console.log(err))
 };
 
-//updating a single data
+//updating a single data for the updateblog.ejs and linking it
 const UpadateSingleData = async (req, res) => {
     const updateBlogData = {
         title: req.body.title,
@@ -56,11 +56,27 @@ const UpadateSingleData = async (req, res) => {
         content: req.body.content
     }
     //the updateone update the first document that matches with the filter
-    await BlogModel.updateOne({ _id: req.params.id }, updateBlogData).set().then(result => {
+    await BlogModel.updateOne({ _id: req.params.id },updateBlogData).then(result => {
         res.send(result)
+        // res.render('success')
     }).catch(err => {
         console.log(err)
     })
+    console.log(updateBlogData)
+};
+
+//fetching data from the blog and displaying it at the updateBlog ejs so the the user can edit the blog data in order to update it
+const fetchUpdate =  async (req, res) => {
+    const id = req.params.id
+    //the findbyid here helps to fetch data using the id
+    await BlogModel.findById(id).then(result => {
+        //displaying or rendering it in updateBlog.ejs
+        if (result) {
+            res.render('updateBlog', { title: 'update Page', data: result})
+            // console.log(result);
+        }
+    }).catch(err =>
+        console.log(err))
 };
 
 //deletion of blog data using the id
@@ -79,5 +95,6 @@ module.exports = {
     FetchDataBlog,
     FetchSingleData,
     DeleteDataBlog,
-    UpadateSingleData
+    UpadateSingleData,
+    fetchUpdate
 };

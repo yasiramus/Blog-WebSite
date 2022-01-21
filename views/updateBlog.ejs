@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%-include ('./partial/head.ejs') %> 
-<body> 
-    <%-include ('./partial/nav.ejs') %> 
-  <div class="create-blog content">
-    <form action="/blog/create" method="post">
-        <label for="title"> Blog Title*:</label>
-        <input type="text" name="title" id="title" required>
+<%-include ('./partial/head.ejs') %>
 
-        <label for="snippet">Blog Description:</label>
-       <textarea name="description" id="snippet" cols="30" rows="10"></textarea>
+  <body>
+    <%-include ('./partial/nav.ejs') %>
+      <div class="create-blog content">
+        <form action="/blog/update/<%= data._id%>" method="put">
+        <!-- <form action="/blog/display" method="get"> -->
 
-       <label for="body">Blog Content:</label>
-       <textarea name="content" id="body" cols="30" rows="10"></textarea>
+          <label for="title">Blog Title*:</label>
+          <input type="text" name="title" value="<%=data.title%>">
 
-       <!-- <input type="submit" value="Publish"> -->
-       <button>Update</button>
-       </form>
-  </div>
-   <%- include ('./partial/footer.ejs') %> 
-</body>
+          <label for="snippet">Blog Description:</label>
+          <textarea  name="description"><%=data.description%></textarea>
+
+          <label for="body">Blog Content:</label>
+          <textarea name="content" ><%=data.content%></textarea>
+
+          <button data-doc="<%=data._id%>">Update</button>
+        </form>
+      </div>
+      <%- include ('./partial/footer.ejs') %>
+
+      <script>
+        const update = document.querySelector('button');
+
+        const id = update.dataset.doc;
+           const endpoint = `/blog/update/${id}`;
+           const obj = {
+             title: document.querySelector('input').getAttribute('value')
+           }
+                 console.log(document.querySelector('input').getAttribute('value'))
+           update.addEventListener("click", () => {
+
+              //the fetch is a ajax client based 
+              fetch(endpoint, {
+                 method: "PUT",
+                 body:JSON.stringify(obj)            
+              }).then(result => result.json())
+                 .catch(err => console.log(err))
+                //  console.log(obj)
+           })
+     </script>
+  </body>
+
 </html>
-

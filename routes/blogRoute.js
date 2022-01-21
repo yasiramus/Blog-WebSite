@@ -28,6 +28,9 @@ router.get('/success', (req, res) => {
 //updating blog data
 router.put('/update/:id', Controller.UpadateSingleData);
 
+//fetching data from the blog and displaying it at the updateBlog ejs so the the user can edit the blog data in order to update it
+router.get('/fetchupdatedata/:id',Controller.fetchUpdate)
+
 //delete metthod 
 //deleting data using their ids
 router.delete('/delete/:id', Controller.DeleteDataBlog);
